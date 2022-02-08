@@ -3,37 +3,44 @@ import axios from 'axios';
 
 const TestData = () => {
     const [infoData, setInfoData] = useState([]);
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(true);
+    const [visible, setVisible] = useState(10);
 
     useEffect(() => {
         const getData = async () => {
             try {
-                const fetchData = await axios.get('https://jsonplaceholder.typicode.com/posts?_page=' + page + '&_limit=' + 10);
+                const fetchData = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
                 setInfoData(fetchData.data);
-                setLoading(false);
             }
             catch (err) {
                 console.error(err);
             }
         }
         getData();
-    }, [page]);
+    }, []);
+
+    const loadMoreData = () => {
+        setVisible(visible + 10);
+    }
 
     return (
-        <div className="App" onScroll={scrollToEnd}>
-            <h1>Hello</h1>
-            {loading && <h3>Loading...</h3>}
-            {infoData.map(item =>
-                <div className='container' key={item.id} >
-                    <div className='title'>
-                        <h4>Title: {item.title}</h4>
+        <div className="App">
+            <div className='container'>
+                {infoData.slice(0, visible).map(item =>
+                    <div className='card' key={item.id} >
+                        <div className='id'>
+                            <h4>Title: {item.id}</h4>
+                        </div>
+                        <p>{item.body}</p>
                     </div>
-                    <h4>{item.body}</h4>
-                </div>
-
-            )}
-
+                )}
+            </div>
+            <div className='loader'>
+                <h5>{visible} of {infoData.length}</h5>
+                {visible < infoData.length ?
+                    <button onClick={loadMoreData}>Load More</button>
+                    : null
+                }
+            </div>
         </div>
     )
 }
