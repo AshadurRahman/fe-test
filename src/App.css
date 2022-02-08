@@ -28,6 +28,11 @@
   width: auto;
   height: 40px;
   display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  cursor: pointer;
 }
 
 .loader {
