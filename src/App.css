@@ -44,10 +44,14 @@ p {
   margin: 15px 0 0 0;
 }
 
+h5 {
+  margin: 0 0 0 90%;
+}
+
 button {
   border: none;
   outline: none;
-  width: 50%;
+  width: 100%;
   padding: 16px 0;
   margin: 10px 0 0 0;
   background: #373b56;
