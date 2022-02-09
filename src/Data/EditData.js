@@ -92,13 +92,13 @@ const EditData = ({ data }) => {
                     <div className='inputs'>
                         <TextField
                             required
-                            id="outlined-required"
+                            id="title-required"
                             label="Title"
                             value={id}
                             onChange={handleIdChange}
                         />
                         <TextField
-                            id="outlined-multiline-static"
+                            id="body-multiline-static"
                             multiline
                             rows={5}
                             value={body}
