@@ -39,6 +39,7 @@ const EditData = ({ data }) => {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
     const [open, setOpen] = useState(false);
+    const [disable, setDisable] = useState(true);
     const [id, setId] = useState(0);
     const [body, setBody] = useState('');
 
@@ -61,9 +62,19 @@ const EditData = ({ data }) => {
         }
     }
 
+    const handleIdChange = (e) => {
+        setId(e.target.value);
+        setDisable(false);
+    }
+
+    const handleBodyChange = (e) => {
+        setBody(e.target.value)
+    }
+
     const onSubmit = () => {
-        console.log("id", id);
-        console.log("body", body);
+        localStorage.setItem('id', id);
+        localStorage.setItem('body', body);
+        handleClose();
     }
 
     return (
@@ -83,21 +94,21 @@ const EditData = ({ data }) => {
                             id="outlined-required"
                             label="Title"
                             value={id}
-                            onChange={(e) => setId(e.target.value)}
+                            onChange={handleIdChange}
                         />
                         <TextField
                             id="outlined-multiline-static"
                             multiline
                             rows={5}
                             value={body}
-                            onChange={(e) => setBody(e.target.value)}
+                            onChange={handleBodyChange}
                         />
                     </div>
                     <div className='buttons'>
                         <Button color="primary" onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button color="primary" onClick={onSubmit}>
+                        <Button color="primary" onClick={onSubmit} size="large">
                             Save
                         </Button>
                     </div>
