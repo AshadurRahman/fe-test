@@ -43,6 +43,21 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.inputs {
+  margin: 10px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.buttons {
+  margin: 10px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
 
 p {
   font-size: 17px;
