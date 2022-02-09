@@ -25,13 +25,15 @@ const useStyles = makeStyles(theme => ({
     paper: {
         position: 'absolute',
         width: 450,
+        height: 300,
+        flexDirection: 'column',
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
     },
 }));
 
-const EditData = () => {
+const EditData = ({ data }) => {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
     const [open, setOpen] = useState(false);
@@ -48,9 +50,11 @@ const EditData = () => {
 
     const getData = async () => {
         try {
-            const fetchData = await axios.get(`https://jsonplaceholder.typicode.com/posts/1`);
+            const fetchData = await axios.get(`https://jsonplaceholder.typicode.com/posts/${data}`);
             // setInfoData(fetchData.data);
-            console.log(fetchData.data);
+            console.log(fetchData.data.id);
+            setId(fetchData.data.id);
+            setBody(fetchData.data.body);
         }
         catch (err) {
             console.error(err);
@@ -68,8 +72,8 @@ const EditData = () => {
             >
                 <div style={modalStyle} className={classes.paper}>
                     <h2>Edit</h2>
-                    <input />
-                    <input />
+                    <input value={id} onChange={(e) => setId(e.target.value)} />
+                    <input value={body} onChange={(e) => setBody(e.target.value)} />
                 </div>
             </Modal>
         </div>

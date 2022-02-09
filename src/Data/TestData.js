@@ -30,7 +30,7 @@ const TestData = () => {
                     <div className='card' key={item.id} >
                         <div className='id'>
                             <h4>Title: {item.id}</h4>
-                            <EditData />
+                            <EditData data={item.id} />
                         </div>
                         <p>{item.body}</p>
                     </div>
