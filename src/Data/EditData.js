@@ -51,8 +51,6 @@ const EditData = ({ data }) => {
     const getData = async () => {
         try {
             const fetchData = await axios.get(`https://jsonplaceholder.typicode.com/posts/${data}`);
-            // setInfoData(fetchData.data);
-            console.log(fetchData.data.id);
             setId(fetchData.data.id);
             setBody(fetchData.data.body);
         }
