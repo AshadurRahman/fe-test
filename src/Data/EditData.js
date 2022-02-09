@@ -68,7 +68,8 @@ const EditData = ({ data }) => {
     }
 
     const handleBodyChange = (e) => {
-        setBody(e.target.value)
+        setBody(e.target.value);
+        setDisable(false);
     }
 
     const onSubmit = () => {
@@ -108,9 +109,15 @@ const EditData = ({ data }) => {
                         <Button color="primary" onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button color="primary" onClick={onSubmit} size="large">
-                            Save
-                        </Button>
+                        {
+                            !disable ?
+                                <Button color="primary" onClick={onSubmit} size="large">
+                                    Save
+                                </Button> :
+                                <Button color="primary" onClick={onSubmit} size="large" disabled>
+                                    Save
+                                </Button>
+                        }
                     </div>
                 </div>
             </Modal>
