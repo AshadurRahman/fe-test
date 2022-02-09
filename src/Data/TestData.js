@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import EditIcon from '@mui/icons-material/Edit';
+import EditData from './EditData';
 
 const TestData = () => {
     const [infoData, setInfoData] = useState([]);
@@ -30,7 +30,7 @@ const TestData = () => {
                     <div className='card' key={item.id} >
                         <div className='id'>
                             <h4>Title: {item.id}</h4>
-                            <EditIcon className='icon' />
+                            <EditData />
                         </div>
                         <p>{item.body}</p>
                     </div>
@@ -43,6 +43,7 @@ const TestData = () => {
                     : null
                 }
             </div>
+            <EditData />
         </div>
     )
 }
