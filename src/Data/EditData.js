@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import { DataContext } from '../Contexts/DataContext';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -43,9 +44,12 @@ const EditData = ({ data }) => {
     const [id, setId] = useState(0);
     const [body, setBody] = useState('');
 
+    const { infoData } = useContext(DataContext);
+
     const handleOpen = () => {
         setOpen(true);
         getData();
+        console.log(infoData);
     };
     const handleClose = () => {
         setOpen(false);
