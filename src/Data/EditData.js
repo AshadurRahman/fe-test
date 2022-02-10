@@ -49,7 +49,7 @@ const EditData = ({ data }) => {
     const handleOpen = () => {
         setOpen(true);
         getData();
-        console.log(infoData);
+        console.log(infoData.slice(0, 10));
     };
     const handleClose = () => {
         setOpen(false);
