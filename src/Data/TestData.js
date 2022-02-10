@@ -28,7 +28,7 @@ const TestData = () => {
     return (
         <div className="App">
             <div className='container'>
-                <DataContext.Provider value={{ infoData }}>
+                <DataContext.Provider value={{ infoData, setInfoData }}>
                     {infoData.slice(0, visible).map(item =>
                         <div className='card' key={item.id} >
                             <div className='id'>
