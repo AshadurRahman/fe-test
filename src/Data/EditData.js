@@ -44,7 +44,7 @@ const EditData = ({ data }) => {
     const [id, setId] = useState(0);
     const [body, setBody] = useState('');
 
-    const { infoData } = useContext(DataContext);
+    const { infoData, setInfoData } = useContext(DataContext);
 
     const handleOpen = () => {
         setOpen(true);
@@ -77,6 +77,7 @@ const EditData = ({ data }) => {
     }
 
     const onSubmit = () => {
+        let newData = JSON.parse(localStorage.getItem("infoData"));
         localStorage.setItem('id', id);
         localStorage.setItem('body', body);
         handleClose();
