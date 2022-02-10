@@ -11,7 +11,8 @@ const TestData = () => {
         const getData = async () => {
             try {
                 const fetchData = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
-                setInfoData(fetchData.data);
+                setInfoData(fetchData.data.slice(0, 10));
+                localStorage.setItem("infoData", JSON.stringify(fetchData.data));
             }
             catch (err) {
                 console.error(err);
@@ -24,11 +25,13 @@ const TestData = () => {
         setVisible(visible + 10);
     }
 
+    let newData = localStorage.getItem('infoData', JSON.stringify("infoData"));
+
     return (
         <div className="App">
             <div className='container'>
                 <DataContext.Provider value={{ infoData }}>
-                    {infoData.slice(0, visible).map(item =>
+                    {JSON.parse(newData).slice(0, visible).map(item =>
                         <div className='card' key={item.id} >
                             <div className='id'>
                                 <h4>Title: {item.id}</h4>
@@ -40,8 +43,8 @@ const TestData = () => {
                 </DataContext.Provider>
             </div>
             <div className='loader'>
-                <h5>{visible} of {infoData.length}</h5>
-                {visible < infoData.length ?
+                <h5>{visible} of {JSON.parse(newData).length}</h5>
+                {visible < JSON.parse(newData).length ?
                     <button onClick={loadMoreData}>Load More</button>
                     : null
                 }
